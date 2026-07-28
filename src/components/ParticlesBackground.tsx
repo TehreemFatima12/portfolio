@@ -1,99 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
-
 export default function ParticlesBackground() {
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-
-  const options: ISourceOptions = {
-    background: {
-      color: {
-        value: "transparent",
-      },
-    },
-
-    particles: {
-      number: {
-        value: 120,
-        density: {
-          enable: true,
-        },
-      },
-
-      color: {
-        value: "#ffffff",
-      },
-
-      opacity: {
-        value: {
-          min: 0.2,
-          max: 0.8,
-        },
-      },
-
-      size: {
-        value: {
-          min: 1,
-          max: 3,
-        },
-      },
-
-      move: {
-        enable: true,
-        speed: 0.5,
-        direction: "none",
-        random: true,
-        straight: false,
-      },
-
-      twinkle: {
-        particles: {
-          enable: true,
-          frequency: 0.05,
-          opacity: 1,
-        },
-      },
-    },
-
-    interactivity: {
-      events: {
-        onHover: {
-          enable: true,
-          mode: "grab",
-        },
-      },
-
-      modes: {
-        grab: {
-          distance: 140,
-          links: {
-            opacity: 0.3,
-          },
-        },
-      },
-    },
-
-    detectRetina: true,
-  };
-
-  if (!init) return null;
-
   return (
-    <Particles
-      id="stars"
-      options={options}
-      className="fixed inset-0 z-0 pointer-events-none"
-    />
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+      {Array.from({ length: 150 }).map((_, i) => (
+        <span
+          key={i}
+          className="absolute w-[2px] h-[2px] bg-white rounded-full animate-pulse"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            opacity: Math.random(),
+            animationDuration: `${2 + Math.random() * 5}s`,
+            transform: `scale(${0.5 + Math.random()})`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
