@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #160622;
+  --foreground: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Global section background */
+.section-bg {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(168, 85, 247, 0.18),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(236, 72, 153, 0.15),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #160622,
+      #0f0218
+    );
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Purple glow */
+.glow {
+  box-shadow:
+    0 0 30px rgba(168,85,247,0.25),
+    0 0 60px rgba(236,72,153,0.15);
+}
+.hero-bg {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(128, 0, 255, 0.18), transparent 35%),
+    radial-gradient(circle at 50% 0%, rgba(90, 0, 180, 0.15), transparent 45%),
+    linear-gradient(180deg, #14041f 0%, #090113 55%, #05000d 100%);
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #a855f7 !important;
+}
+
+.swiper-pagination-bullet {
+  background: #a855f7 !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #d946ef !important;
+}
+/* ========================= */
+/* Game Slider */
+/* ========================= */
+
+.gameSwiper .swiper-button-next,
+.gameSwiper .swiper-button-prev {
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
+  background: rgba(139, 92, 246, 0.9);
+  border: 2px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  transition: all .3s ease;
+}
+
+.gameSwiper .swiper-button-next:hover,
+.gameSwiper .swiper-button-prev:hover {
+  background: #a855f7;
+  transform: scale(1.08);
+}
+
+.gameSwiper .swiper-button-next::after,
+.gameSwiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.gameSwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: white;
+  opacity: .5;
+}
+
+.gameSwiper .swiper-pagination-bullet-active {
+  background: #a855f7;
+  opacity: 1;
+}
+
+@media (max-width:768px){
+
+  .gameSwiper .swiper-button-next,
+  .gameSwiper .swiper-button-prev{
+      width:40px;
+      height:40px;
+  }
+
+  .gameSwiper .swiper-button-next::after,
+  .gameSwiper .swiper-button-prev::after{
+      font-size:14px;
+  }
+
 }
